@@ -1,0 +1,15 @@
+<app-guest-header/>
+<main>
+  <form role="search" (submit)="iraBusqueda(textoBusqueda.value)" class="formSearch">
+    <div class="searchInput">
+      
+      <input #textoBusqueda type="search" placeholder="Buscar..."
+      aria-label="Search">
+    </div>
+    <button type="submit" mat-fab color="primary" >
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+  <div id="mapa"></div>
+</main>
+<app-footer/>

@@ -1,0 +1,32 @@
+<div class="loginContainer">
+  <div class="loginFormContainer">
+    <div class="imageContainer">
+      <img src="../../assets/UniLocal.png" alt="unilocal-logo" class="formImage">
+    </div>
+    <div class="formContainer">
+      <form #f="ngForm" class="loginForm" (ngSubmit)="login()">
+        <mat-form-field>
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput
+             placeholder="guest@example.com"
+             type="email"
+             name="email"
+             required [(ngModel)]="loginDTO.email">
+        </mat-form-field>
+        <mat-form-field class="loginForm">
+             <mat-label>Contraseña</mat-label>
+          <input matInput
+             type="password"
+              name="password"
+              [(ngModel)]="loginDTO.password" required>
+            
+        </mat-form-field>
+        <button mat-flat-button color="primary" [disabled]="f.invalid" class="loginButton">Iniciar Sesión</button>
+        <a routerLink="/sign-up" class="signUpLink">Regístrate</a>
+
+      </form>
+      
+     
+    </div>
+  </div>
+</div>
