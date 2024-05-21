@@ -9,6 +9,9 @@
     <div class="businessContainer">
       @for (item of resultados; track $index) {
         <div class="businessCard">
+          <div class="imageContainer">
+            <img src="{{item.imagenes[0]}}" alt="">
+          </div>
           <h2>{{item.nombre}}</h2>
           <p>Tipo {{item.tipoNegocio}}</p>
           <p>Calificación promedio: {{item.calificacionPromedio}}</p>

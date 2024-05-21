@@ -19,6 +19,14 @@
   align-self: center;
 }
 
-.navComponent{
+.navListLogged{
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
   width: 300px;
+
+}
+
+.navComponent{
+  width: 30%;
 }

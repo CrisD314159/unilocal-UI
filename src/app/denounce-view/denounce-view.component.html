@@ -1,0 +1,19 @@
+<app-header/>
+<main>
+  <div class="denounceContainer">
+    <h1 class="denounceTitle">Denuncia No {{denuncia?.idNegocio}}</h1>
+    <p class="denounceBody">{{denuncia?.motivo}}</p>
+    <p class="denounceBody">Realizada por: {{nombreUsuario}}</p>
+    <p class="denounceBody">Nombre del negocio: {{nombrenegocio}}</p>
+    <a routerLink='/business-view-admin/{{denuncia?.idNegocio}}'>
+      <button mat-flat-button color="primary">Ver negocio</button>
+    </a>
+    
+    <div class="denounceButtonContainer">
+      <button mat-flat-button color="primary" (click)="approveDenounce(denuncia?.id)">Aceptar Denuncia</button>
+      <button mat-flat-button color="accent" (click)="rejectDenounce(denuncia?.id)">Rechazar denuncia</button>
+    </div>
+  </div>
+
+</main>
+<app-footer/>

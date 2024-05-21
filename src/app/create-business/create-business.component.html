@@ -5,7 +5,8 @@
     <form #f="ngForm" class="createForm">
       <div class="imagesContainer">
         <label class="imagesLabel" for="images">Haz click para seleccionar imagenes</label>
-        <input id="images" type="file" multiple name="imagenes" [(ngModel)] = "registroNegocioDTO.imagenes">
+        <input id="images" type="file" multiple name="imagenes" (change)="agregarImagenes($event)">
+        <button mat-flat-button color="accent" (click)="subirImagen()">Guardar Imagenes</button>
       </div>
       
       <mat-form-field>
@@ -26,10 +27,12 @@
       <mat-form-field>
         <mat-label>Tipo</mat-label>
         <mat-select name="tipo" [(ngModel)]="registroNegocioDTO.tipoNegocio">
-          <mat-option value="PANADERIA">Panadería</mat-option>
+          <mat-option value="BAR">Panadería</mat-option>
           <mat-option value="HOTEL">Hotel</mat-option>
           <mat-option value="CAFETERIA">Cafeteria</mat-option>
           <mat-option value="RESTAURANTE">Restaurante</mat-option>
+          <mat-option value="COMIDARAPIDA">Restaurante</mat-option>
+          <mat-option value="MUSEO">Museo</mat-option>
         </mat-select>
 
       </mat-form-field>
@@ -104,6 +107,7 @@
        
       </div>
     </form>
+    <app-alerta [alerta]="alerta"></app-alerta>
   </div>
 </main>
 <app-footer/>

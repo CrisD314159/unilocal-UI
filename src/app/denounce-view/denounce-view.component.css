@@ -1,0 +1,37 @@
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.denounceContainer{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  background-color: #f8f8f8;
+  width: 50%;
+  padding: 20px 50px;
+}
+
+.denounceTitle{
+  font-size: 1.5rem;
+  font-weight: 200;
+  margin: 10px;
+}
+
+.denounceButtonContainer{
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+
+.denounceButtonContainer > button{
+  margin: 0 5px;
+}

@@ -1,1 +1,114 @@
-<p>edit-business works!</p>
+<app-guest-header/>
+<main class="createMain">
+  <div class="createContainer">
+    <h1 class="newTitle">Nuevo negocio</h1>
+    <form #f="ngForm" class="createForm">
+      <div class="imagesContainer">
+        <label class="imagesLabel" for="images">Haz click para seleccionar imagenes</label>
+        <input id="images" type="file" multiple name="imagenes" (change)="agregarImagenes($event)">
+        <button mat-flat-button color="accent" (click)="subirImagen()">Guardar Imagenes</button>
+      </div>
+      
+      <mat-form-field>
+        <mat-label>Nombre del negocio</mat-label>
+        <input matInput placeholder="Nombre del negocio" 
+        #nombre="ngModel" type="text" name="nombre"
+        [defaultValue]="registroNegocioDTO.nombre"
+        [(ngModel)]="registroNegocioDTO.nombre" required >
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <textarea matInput 
+        #descripcion="ngModel" 
+        name="descripcion"
+        [defaultValue]="registroNegocioDTO.descripcion"
+        [(ngModel)]="registroNegocioDTO.descripcion" required></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Tipo</mat-label>
+        <mat-select name="tipo" [(ngModel)]="registroNegocioDTO.tipoNegocio" >
+          <mat-option value="PANADERIA">Panadería</mat-option>
+          <mat-option value="HOTEL">Hotel</mat-option>
+          <mat-option value="CAFETERIA">Cafeteria</mat-option>
+          <mat-option value="RESTAURANTE">Restaurante</mat-option>
+        </mat-select>
+
+      </mat-form-field>
+     
+
+      <div class="locationContainer">
+        <h2>Ubicación</h2>
+        <div class="mapContainer">
+          <div id="mapa"></div>
+        </div>
+        
+      </div>
+
+      <h2>Horarios</h2>
+      <div class="multiContainer">
+        
+        <div class="scheduleList">
+          @for (item of horarios; track $index) {
+            <div>
+              <mat-form-field>
+                <mat-label>Día</mat-label>
+                <mat-select name="dia-{{$index}}" [(ngModel)]="item.dia" required>
+                  <mat-option value="LUNES">Lunes</mat-option>
+                  <mat-option value="MARTES">Martes</mat-option>
+                  <mat-option value="MIERCOLES">Miércoles</mat-option>
+                  <mat-option value="JUEVES">Jueves</mat-option>
+                  <mat-option value="VIERNES">Viernes</mat-option>
+                  <mat-option value="SABADO">Sábado</mat-option>
+                  <mat-option value="DOMINGO">Domingo</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="timeContainer">
+                <label>Apertura</label>
+                <input  type="time" name="horaApertura-{{$index}}" [(ngModel)]="horarios[$index].horaApertura" required>
+              </div>
+                
+              <div class="timeContainer">
+                <label>Cierre</label>
+                <input  type="time" name="horaCierre-{{$index}}" [(ngModel)]="horarios[$index].horaCierre" required>
+              </div>
+                
+             
+            </div>
+            
+          }
+        </div>
+        <button mat-fab color="accent" (click)="agregarHorario()"><mat-icon>add</mat-icon></button>
+      </div>
+
+      <h2>Teléfonos</h2>
+      <div class="multiContainer">
+       
+        <div class="phoneList">
+          @for (item of telefonos; track $index) {
+            <div>
+              <mat-form-field>
+                <mat-label>Telefono {{$index + 1}}</mat-label>
+                <input matInput type="text" name="phone-{{$index}}" [(ngModel)]="telefonos[$index]" required>
+              </mat-form-field>
+            </div>
+            
+          }
+        </div>
+        <button mat-fab color="accent" (click)="agregarTelefono()"><mat-icon>add</mat-icon></button>
+      </div>
+
+      <div class="buttonContainer">
+        <button mat-raised-button color="primary" (click)="crearNegocio()" [disabled]="f.invalid ">Actualizar</button>
+        <a routerLink="/my-business">
+          <button mat-stroked-button color="accent">Volver</button>
+        </a>
+       
+      </div>
+    </form>
+    <app-alerta [alerta]="alerta"></app-alerta>
+  </div>
+</main>
+<app-footer/>
+

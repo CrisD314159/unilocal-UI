@@ -1,1 +1,76 @@
-<p>admin-dashboard works!</p>
+<app-header/>
+<main class="myBusinessMain">
+  <div class="myBusinessContainer">
+    <h1 class="businessTitle">Bienvenido a tu Dashboard</h1>
+    <div class="tool-container">
+      <button mat-stroked-button color="primary" (click)="showPending()"> Lugares Pendientes</button>
+      <button mat-stroked-button color="primary" (click)="showRejected()"> Lugares Rechazados</button>
+    </div>
+    <div class="businessContainer">
+      @if (pendingBusiness.length > 0) {
+        @for (negocio of pendingBusiness; track $index) {
+          <div class="business-card">
+            <div class="business-image-container">
+              <img src={{negocio.imagenes[0]}} alt="imagen negocio">
+            </div>
+            <div>
+  
+              <h2 class="business-name">{{negocio.nombre}}</h2>
+            <p class="business-body-item">{{negocio.estadoNegocio}}</p>
+            <p class="business-body-item">Calificación promedio: {{negocio.calificacionPromedio}}</p>
+            <p class="business-body-item">{{negocio.tipoNegocio}}</p>
+            <a routerLink="/business-view-admin/{{negocio.codigoNegocio}}">
+              Ver negocio
+            </a>
+  
+            </div>
+            
+            <div class="buttonContainer">
+          
+              <button mat-flat-button color="primary" (click)="approveBusiness(negocio.codigoNegocio)">Aceptar negocio</button>
+                <button mat-flat-button color="accent" (click)="rejectBusiness(negocio.codigoNegocio)">Rechazar negocio</button>
+              
+            </div>
+           
+  
+  
+          </div>
+        }
+        
+
+
+      }
+      @if (rejectedBusiness.length > 0) {
+        @for (negocio of rejectedBusiness; track $index) {
+          <div class="business-card">
+            <div class="business-image-container">
+              <img src={{negocio.imagenes[0]}} alt="imagen negocio">
+            </div>
+            <div>
+  
+              <h2 class="business-name">{{negocio.nombre}}</h2>
+            <p class="business-body-item">{{negocio.estadoNegocio}}</p>
+            <p class="business-body-item">{{negocio.tipoNegocio}}</p>
+            <a routerLink="/business-view/{{negocio.codigoNegocio}}">
+              Ver negocio
+            </a>
+  
+            </div>
+            
+            <div class="buttonContainer">
+          
+              <button mat-flat-button color="primary" (click)="approveBusiness(negocio.codigoNegocio)">Aceptar negocio</button>
+              
+            </div>
+          </div>
+          
+        }
+
+      }
+      
+    </div>
+  </div>
+
+  
+</main>
+<app-footer/>

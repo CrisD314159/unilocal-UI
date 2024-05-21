@@ -1,0 +1,54 @@
+.imagesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #e23d7f;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.imagesContainer input[type="file"] {
+  display: none;
+}
+
+.imagesLabel{
+  font-size: 14px;
+  color: #e23d7f;
+  padding: 10px;
+  cursor: pointer;
+}
+
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.cardContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  background-color: #f8f8f8;
+  width: 50%;
+  padding: 20px 50px;
+}
+
+.editForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+}
+
+h1{
+  font-size: 1.5rem;
+  font-weight: 200;
+  margin: 10px;
+}

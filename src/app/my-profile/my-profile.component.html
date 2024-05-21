@@ -1,0 +1,26 @@
+<app-guest-header/>
+<main>
+  <div class="myProfileContainer">
+    <h1 class="profileTitle">Mi perfil</h1>
+    <div class="profileData">
+      <div class="profileImageContainer">
+        <img src="{{usuario.fotoPerfil.link}}" alt="imagen de perfil" class="profileImage">
+      </div>
+      <div class="profileInfo">
+        <h2 class="profileName">Nombre: {{usuario.nombre}}</h2>
+        <p class="profileItem">Correo: {{usuario.email}}</p>
+        <p class="profileItem">Ciudad de residencia: {{usuario.ciudadResidencia.toUpperCase()}}</p>
+      </div>
+
+      <div class="userInfo">
+        <h2 class="profileName">User: {{usuario.nickname}}</h2>
+        <a routerLink='/reset-password'><button mat-flat-button color="accent">Reestablecer contraseña</button></a>
+      </div>
+    </div>
+    <div class="profileButtons">
+      <a routerLink='/edit-profile'><button mat-flat-button color="primary">Editar perfil</button></a>
+      <button mat-stroked-button color="warn" (click)="deleteProfile(usuario.id)">Eliminar perfil</button>
+    </div>
+  </div>
+</main>
+<app-footer/>

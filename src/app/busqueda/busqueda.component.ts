@@ -23,12 +23,21 @@ export class BusquedaComponent implements OnInit{
     this.textoBusqueda = "";
     this.route.params.subscribe(params => {
       this.textoBusqueda = params['texto'];
-      this.resultados = this.negociosService.buscar(this.textoBusqueda);
+      this.negociosService.buscar(this.textoBusqueda).subscribe({
+      next: data => {
+        this.resultados = data.respuesta;
+        this.mapaService.pintarMarcadores(this.resultados);
+      },
+      error: error => {
+        console.log(error);
+      }
+      })
+
     });
     }
   ngOnInit(): void {
     this.mapaService.crearMapa();
-    this.mapaService.pintarMarcadores(this.resultados);
+    
   }
 
 }

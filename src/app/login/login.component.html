@@ -21,7 +21,7 @@
               [(ngModel)]="loginDTO.password" required>
             
         </mat-form-field>
-        <button mat-flat-button color="primary" [disabled]="f.invalid" class="loginButton">Iniciar Sesión</button>
+        <button mat-flat-button color="primary" [disabled]="f.invalid" class="loginButton" (click)="login()">Iniciar Sesión</button>
         <a routerLink="/sign-up" class="signUpLink">Regístrate</a>
 
       </form>

@@ -5,40 +5,82 @@
     <h1 class="businessTitle">Mis Negocios</h1>
     <div class="tool-container">
       <a routerLink="/create-business"><button mat-fab color="accent" > <mat-icon>add</mat-icon></button></a>
-      <a routerLink="/"><button mat-stroked-button color="primary" > Lugares Archivados</button></a>
+      <button mat-stroked-button color="primary" (click)="mostrarArchivados()"> Lugares Archivados</button>
+      <button mat-stroked-button color="primary" (click)="mostrarActivos()"> Lugares Activos</button>
     </div>
     <div class="businessContainer">
-      @for (negocio of negocios; track $index) {
-        <div class="business-card">
-          <div class="business-image-container">
-            <img src="https://www.kayak.com.co/rimg/himg/52/88/99/expediav2-72027-a8f59d-863276.jpg?width=1366&height=768&crop=true" alt="imagen negocio">
+      @if (negociosArchivados.length > 0) {
+        @for (negocio of negociosArchivados; track $index) {
+          <div class="business-card">
+            <div class="business-image-container">
+              <img src={{negocio.imagenes[0]}} alt="imagen negocio">
+            </div>
+            <div>
+  
+              <h2 class="business-name">{{negocio.nombre}}</h2>
+            <p class="business-body-item">{{negocio.estadoNegocio}}</p>
+            <p class="business-body-item">Calificación promedio: {{negocio.calificacionPromedio}}</p>
+            <p class="business-body-item">{{negocio.tipoNegocio}}</p>
+            <a routerLink="/business-view/{{negocio.codigoNegocio}}">
+              Ver negocio
+            </a>
+  
+            </div>
+            
+            <div class="buttonContainer">
+          
+              <button mat-flat-button color="primary" (click)="desarchivarNegocio(negocio.codigoNegocio)">Republicar negocio</button>
+              
+              <a routerLink="/business-edit/{{negocio.codigoNegocio}}">
+                <button mat-flat-button color="accent">Editar negocio</button>
+              </a>
+            </div>
+            <button (click)="deleteBusiness(negocio.codigoNegocio)" mat-fab color="warn"><mat-icon>delete</mat-icon></button>
+           
+  
+  
           </div>
-          <div>
-            <h2 class="business-name">{{negocio.nombre}}</h2>
-          <p class="business-body-item">{{negocio.estadoNegocio}}</p>
-          <p class="business-body-item">Calificación promedio: {{negocio.calificacionPromedio}}</p>
-          <p class="business-body-item">{{negocio.tipoNegocio}}</p>
-          <a routerLink="/business-view/{{negocio.codigoNegocio}}">
-            Ver negocio
-          </a>
+        }
+        
 
+
+      }
+      @if (negocios.length > 0) {
+        @for (negocio of negocios; track $index) {
+          <div class="business-card">
+            <div class="business-image-container">
+              <img src={{negocio.imagenes[0]}} alt="imagen negocio">
+            </div>
+            <div>
+  
+              <h2 class="business-name">{{negocio.nombre}}</h2>
+            <p class="business-body-item">{{negocio.estadoNegocio}}</p>
+            <p class="business-body-item">Calificación promedio: {{negocio.calificacionPromedio}}</p>
+            <p class="business-body-item">{{negocio.tipoNegocio}}</p>
+            <a routerLink="/business-view/{{negocio.codigoNegocio}}">
+              Ver negocio
+            </a>
+  
+            </div>
+            
+            <div class="buttonContainer">
+          
+              <button mat-flat-button color="primary" (click)="archivarNegocio(negocio.codigoNegocio)">Archivar negocio</button>
+              
+              <a routerLink="/business-edit/{{negocio.codigoNegocio}}">
+                <button mat-flat-button color="accent">Editar negocio</button>
+              </a>
+            </div>
+            <button (click)="deleteBusiness(negocio.codigoNegocio)" mat-fab color="warn"><mat-icon>delete</mat-icon></button>
+           
+  
+  
           </div>
           
-          <div class="buttonContainer">
-        
-            <button mat-flat-button color="primary">Archivar negocio</button>
-            
-            <a routerLink="/business-edit/{{negocio.codigoNegocio}}">
-              <button mat-flat-button color="accent">Editar negocio</button>
-            </a>
-            <button (click)="deleteBusiness(negocio.codigoNegocio)" mat-fab color="warn"><mat-icon>delete</mat-icon></button>
-          </div>
-         
+        }
 
-
-        </div>
-        
       }
+      
     </div>
   </div>
 

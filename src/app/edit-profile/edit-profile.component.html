@@ -1,0 +1,45 @@
+<app-guest-header/>
+<main>
+  <div class="cardContainer">
+    <h1 class="editTitle">Editar Perfil</h1>
+    <form action="" class="editForm">
+      <div class="imagesContainer">
+        <label class="imagesLabel" for="images">Haz click para seleccionar la nueva foto de perfil</label>
+        <input id="images" type="file" name="imagenes" (change)="agregarImagen($event)">
+        <button mat-flat-button color="accent" (click)="subirImagen($event)">Guardar Imagen</button>
+      </div>
+      <mat-form-field class="formItem">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" required placeholder="Nombre" [defaultValue]="usuario.nombre" (change)="handleName($event)">
+      </mat-form-field>
+      <mat-form-field class="formItem">
+        <mat-label>Correo</mat-label>
+        <input matInput formControlName="mail" disabled placeholder="Apellido" [defaultValue]="usuario.email" >
+      </mat-form-field>
+      <mat-form-field class="formItem">
+        <mat-label>Ciudad de residencia</mat-label>
+        <mat-select name="ciudadResidencia" [value]="usuario.ciudadResidencia" (selectionChange)="handleCity($event)">
+          <mat-option value="armenia">Armenia</mat-option>
+          <mat-option value="bogotá">Bogotá</mat-option>
+          <mat-option value="medellín">Medellín</mat-option>
+          <mat-option value="cali">Cali</mat-option>
+          <mat-option value="barranquilla">Barranquilla</mat-option>
+          <mat-option value="cartagena">Cartagena</mat-option>
+          <mat-option value="bucaramanga">Bucaramanga</mat-option>
+          <mat-option value="pereira">Pereira</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="formItem">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="mail" required="" placeholder="Apellido" [defaultValue]="usuario.nickname" (change)="handleUser($event)">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" (click)="updateUser($event)">Actualizar</button>
+    </form>
+     
+  </div>
+
+
+</main>
+
+<app-footer/>

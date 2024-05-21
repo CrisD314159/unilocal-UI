@@ -7,6 +7,7 @@ import { GuestHeaderComponent } from '../guest-header/guest-header.component';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-my-business',
@@ -16,18 +17,82 @@ import { RouterLink } from '@angular/router';
   styleUrl: './my-business.component.css'
 })
 export class MyBusinessComponent {
+  negociosArchivados: ItemNegocioDTO[];
   negocios: ItemNegocioDTO[];
-  constructor(private negocioService: BusinessService) {
+  constructor(private negocioService: BusinessService, private tokenService: TokenService) {
   this.negocios = [];
+  this.negociosArchivados = [];
   this.listarNegocios();
   }
   public listarNegocios(){
-  this.negocios = this.negocioService.listar();
+    const codigoCliente = this.tokenService.getCodigo();
+    console.log(codigoCliente);
+    this.negocioService.listarNegociosPropietario(codigoCliente).subscribe({
+    next: (data) => {
+      console.log(
+      data.respuesta
+      );
+    this.negocios = data.respuesta;
+    },
+    error: (error) => {
+    console.error(error);
+    }
+    });
   }
 
   public deleteBusiness(id: string){
     this.negocioService.eliminar(id);
-    this.negocios = this.negocioService.listar();
+    this.listarNegocios()
+  }
+
+  public mostrarActivos(){
+    this.negociosArchivados = []
+    this.listarNegocios()
+  }
+
+  public mostrarArchivados(){
+    this.negocios = []
+    const codigoCliente = this.tokenService.getCodigo();
+    this.negocioService.listarArchivados(codigoCliente).subscribe({
+      next: (data) => {
+        console.log(data.respuesta);
+        this.negociosArchivados = data.respuesta;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+    }
+  
+
+  public archivarNegocio(id: string){
+    this.negocioService.archivar(id).subscribe({
+      next: (data) => {
+        console.log(data.respuesta);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+
+    });
+    this.listarNegocios()
+    window.location.reload();
+  }
+
+  public desarchivarNegocio(id: string){
+    this.negocioService.desarchivar(id).subscribe({
+      next: (data) => {
+        console.log(data.respuesta);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+
+    });
+    this.listarNegocios()
+    window.location.reload();
+    
+
   }
 }
 

@@ -37,11 +37,12 @@
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 300px;
+  height: 400px;
   margin: 20px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
+  overflow: hidden;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
@@ -52,7 +53,16 @@
 }
 
 #mapa{
-  width: 100%;
+  width: 90%;
   height: 500px;
 
   }
+
+
+.imageContainer{
+  width: 80%;
+  margin: 0 auto;
+}
+.imageContainer > img{
+  width: 100%;
+}

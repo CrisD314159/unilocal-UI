@@ -1,0 +1,14 @@
+<app-guest-header/>
+<main>
+  <div class="cardContainer">
+    <h1>Denunciar publicación</h1>
+    <form class="denounceForm" (submit)="denunciar($event)">
+      <mat-form-field class="">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="description" required placeholder="Escribe los motivos de la denuncia" (change)="handleChange($event)"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Enviar Denuncia</button>
+    </form>
+  </div>
+</main>
+<app-footer/>

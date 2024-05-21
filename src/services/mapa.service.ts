@@ -60,7 +60,7 @@ public pintarMarcadores(negocios: ItemNegocioDTO[]) {
   negocios.forEach(negocio => {
   new mapboxgl.Marker()
   .setLngLat([negocio.ubicacion.longitud, negocio.ubicacion.latitud])
-  .setPopup(new mapboxgl.Popup().setHTML(negocio.nombre))
+  .setPopup(new mapboxgl.Popup().setHTML(negocio.nombre, ))
   .addTo(this.mapa);
   });
 }

@@ -1,0 +1,64 @@
+<app-header/>
+<main class="myBusinessMain">
+  <div class="myBusinessContainer">
+    <h1 class="businessTitle">Bienvenido a tu Dashboard</h1>
+    <div class="tool-container">
+      <button mat-stroked-button color="primary" (click)="showPending()"> Denuncias Pendientes</button>
+      <button mat-stroked-button color="primary" (click)="showRejected()"> Denuncias Rechazados</button>
+    </div>
+    <div class="businessContainer">
+      @if (pendingDenounces.length > 0) {
+        @for (negocio of pendingDenounces; track $index) {
+          <div class="business-card">
+            <div>
+  
+              <h2 class="business-name">Denuncia No {{negocio.idNegocio}}</h2>
+            <p class="business-body-item">{{negocio.motivo}}</p>
+     
+            <a routerLink="/denounce-view/{{negocio.id}}">
+              Ver Denuncia
+            </a>
+  
+            </div>
+            
+            <div class="buttonContainer">
+          
+              <button mat-flat-button color="primary" (click)="approveDenounce(negocio.id)">Aceptar Denuncia</button>
+                <button mat-flat-button color="accent" (click)="rejectDenounce(negocio.id)">Rechazar Denuncia</button>
+              
+            </div>
+          </div>
+        }
+        
+
+
+      }
+      @if (rejectedDenounces.length > 0) {
+        @for (negocio of rejectedDenounces; track $index) {
+          <div class="business-card">
+            <div>
+  
+              <h2 class="business-name">Denuncia No {{negocio.idNegocio}}</h2>
+            <p class="business-body-item">{{negocio.motivo}}</p>
+          
+  
+            </div>
+            
+            <div class="buttonContainer">
+          
+              <button mat-flat-button color="primary" (click)="approveDenounce(negocio.id)">Aceptar Denuncia</button>
+              
+            </div>
+          </div>
+          
+        }
+
+      }
+      
+    </div>
+  </div>
+
+  
+</main>
+<app-footer/>
+

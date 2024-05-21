@@ -2,7 +2,6 @@
 <main>
   <form role="search" (submit)="iraBusqueda(textoBusqueda.value)" class="formSearch">
     <div class="searchInput">
-      
       <input #textoBusqueda type="search" placeholder="Buscar..."
       aria-label="Search">
     </div>
@@ -11,5 +10,38 @@
     </button>
   </form>
   <div id="mapa"></div>
+  <div class="businessMainContainer">
+    <h1>Últimos negocios disponibles</h1>
+    <div class="tool-container">
+      <button mat-stroked-button color="primary" (click)="mostrarRestaurantes()"> Restaurantes</button>
+      <button mat-stroked-button color="primary" (click)="mostrarBares()"> Bares</button>
+      <button mat-stroked-button color="primary" (click)="mostrarCafes()"> Cafés</button>
+      <button mat-stroked-button color="primary" (click)="mostrarMuseos()"> Museos</button>
+      <button mat-stroked-button color="primary" (click)="mostrarHoteles()"> Hoteles</button>
+      <button mat-stroked-button color="primary" (click)="mostrarComidaRapida()"> Comida rápida</button>
+    </div>
+    <div class="businessContainer">
+      @for (item of bussiness; track $index) {
+        <div class="businessCard">
+          <div class="imageContainer">
+            <img src="{{item.imagenes[0]}}" alt="">
+            
+          </div>
+        
+          <h2>{{item.nombre}}</h2>
+          <p>Tipo {{item.tipoNegocio}}</p>
+          <p>Calificación promedio: {{item.calificacionPromedio}}</p>
+          <a href="/business-view/{{item.codigoNegocio}}">
+            <button mat-flat-button color="primary">Ver negocio</button>
+          </a>
+  
+        </div>
+  
+      }
+    </div>
+
+    
+  </div>
+  
 </main>
 <app-footer/>
