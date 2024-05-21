@@ -28,8 +28,8 @@ import { ItemNegocioDTO } from '../../dto/item-negocio-dto';
   styleUrl: './edit-business.component.css'
 })
 export class EditBusinessComponent {
-  registroNegocioDTO: ActualizarNegocioDTO;
-  negocio: ItemNegocioDTO | undefined;
+  actualizarNegocioDTO: ActualizarNegocioDTO;
+  negocio: ItemNegocioDTO = new ItemNegocioDTO();
   horarios: Horario[];
   telefonos: string[];
   fotos: any[];
@@ -41,6 +41,9 @@ export class EditBusinessComponent {
       this.negociosService.obtener(this.codigoNegocio).subscribe({
         next: data => {
           this.negocio = data.respuesta;
+          this.telefonos = this.negocio.telefonos;
+          this.horarios = this.negocio.horarios;
+          console.log(this.negocio);
 
         },
         error: error => {
@@ -58,14 +61,18 @@ export class EditBusinessComponent {
       this.telefonos = [""];
     }
     this.alerta = new Alerta("", "");
-    this.registroNegocioDTO = new RegistroNegocioDTO();
+    this.actualizarNegocioDTO = new ActualizarNegocioDTO();
     this.fotos = [];
   }
-  public crearNegocio() {
-    this.registroNegocioDTO.codigoCliente = this.tokenService.getCodigo();
-    this.registroNegocioDTO.horarios = this.horarios;
-    this.registroNegocioDTO.telefonos = this.telefonos;
-    this.negociosService.crear(this.registroNegocioDTO).subscribe({
+  public actualizaNegocio() {
+    if(this.actualizarNegocioDTO.imagenes.length > 0){
+
+    this.actualizarNegocioDTO.id = this.codigoNegocio;
+    this.actualizarNegocioDTO.descripcion = this.negocio.descripcion;
+    this.actualizarNegocioDTO.nombre = this.negocio.nombre;
+    this.actualizarNegocioDTO.horarios = this.horarios;
+    this.actualizarNegocioDTO.telefonos = this.telefonos;
+    this.negociosService.actualizar(this.actualizarNegocioDTO).subscribe({
       next: data => {
         this.alerta = new Alerta(data.respuesta, "success");
         this.router.navigate(['/my-business']);
@@ -76,10 +83,16 @@ export class EditBusinessComponent {
       }
     
     });
-    console.log(this.registroNegocioDTO);
+
+    }else{
+      this.alerta = new Alerta("Debe subir y guardar al menos una imagen", "danger");
+    }
+
+    
   }
   public agregarHorario() {
     this.horarios.push(new Horario());
+    console.log(this.actualizarNegocioDTO);
   }
 
   public agregarTelefono() {
@@ -95,7 +108,7 @@ export class EditBusinessComponent {
         this.imagenService.subir(formData).subscribe({
           next: data => {
             console.log(data.respuesta.url);
-            this.registroNegocioDTO.imagenes.push(data.respuesta.url);
+            this.actualizarNegocioDTO.imagenes.push(data.respuesta.url);
             
       },
         error: error => {
@@ -124,8 +137,8 @@ export class EditBusinessComponent {
     this.mapaService.crearMapa();
     this.mapaService.pintarMarcador(this.negocio);
     this.mapaService.agregarMarcador().subscribe((marcador) => {
-      this.registroNegocioDTO.ubicacion.latitud = marcador.lat;
-      this.registroNegocioDTO.ubicacion.longitud = marcador.lng;
+      this.actualizarNegocioDTO.ubicacion.latitud = marcador.lat;
+      this.actualizarNegocioDTO.ubicacion.longitud = marcador.lng;
     });
   }
 

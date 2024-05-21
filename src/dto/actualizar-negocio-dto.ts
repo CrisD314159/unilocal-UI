@@ -3,13 +3,12 @@ import { Ubicacion } from "./ubicacion";
 
 export class ActualizarNegocioDTO {
   constructor(
-    public nombre: string = '',
+    public id: string = '',
     public descripcion: string = '',
-    public codigoCliente: string = '',
-    public ubicacion: Ubicacion = new Ubicacion(0,0),
+    public nombre: string = '',
+    public telefonos: string[] = [],
     public imagenes: string[] = [],
-    public tipoNegocio: string = '',
-    public horarios: Horario[] = [],
-    public telefonos: string[] = []
+    public ubicacion: Ubicacion = new Ubicacion(0,0),
+    public horarios: Horario[] = []
     ) { }
 }

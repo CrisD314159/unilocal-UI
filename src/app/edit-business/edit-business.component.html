@@ -1,7 +1,7 @@
 <app-guest-header/>
 <main class="createMain">
   <div class="createContainer">
-    <h1 class="newTitle">Nuevo negocio</h1>
+    <h1 class="newTitle">Editar Negocio</h1>
     <form #f="ngForm" class="createForm">
       <div class="imagesContainer">
         <label class="imagesLabel" for="images">Haz click para seleccionar imagenes</label>
@@ -13,8 +13,8 @@
         <mat-label>Nombre del negocio</mat-label>
         <input matInput placeholder="Nombre del negocio" 
         #nombre="ngModel" type="text" name="nombre"
-        [defaultValue]="registroNegocioDTO.nombre"
-        [(ngModel)]="registroNegocioDTO.nombre" required >
+        [defaultValue]="negocio.nombre"
+        [(ngModel)]="negocio.nombre" required >
       </mat-form-field>
 
       <mat-form-field>
@@ -22,13 +22,13 @@
         <textarea matInput 
         #descripcion="ngModel" 
         name="descripcion"
-        [defaultValue]="registroNegocioDTO.descripcion"
-        [(ngModel)]="registroNegocioDTO.descripcion" required></textarea>
+        [defaultValue]="negocio.descripcion"
+        [(ngModel)]="negocio.descripcion" required></textarea>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Tipo</mat-label>
-        <mat-select name="tipo" [(ngModel)]="registroNegocioDTO.tipoNegocio" >
+        <mat-select name="tipo" disabled [value]="negocio.tipoNegocio">
           <mat-option value="PANADERIA">Panadería</mat-option>
           <mat-option value="HOTEL">Hotel</mat-option>
           <mat-option value="CAFETERIA">Cafeteria</mat-option>
@@ -54,7 +54,7 @@
             <div>
               <mat-form-field>
                 <mat-label>Día</mat-label>
-                <mat-select name="dia-{{$index}}" [(ngModel)]="item.dia" required>
+                <mat-select name="dia-{{$index}}" [(ngModel)]="item.dia" [value]="item.dia" required>
                   <mat-option value="LUNES">Lunes</mat-option>
                   <mat-option value="MARTES">Martes</mat-option>
                   <mat-option value="MIERCOLES">Miércoles</mat-option>
@@ -66,12 +66,12 @@
               </mat-form-field>
               <div class="timeContainer">
                 <label>Apertura</label>
-                <input  type="time" name="horaApertura-{{$index}}" [(ngModel)]="horarios[$index].horaApertura" required>
+                <input  type="time" name="horaApertura-{{$index}}" [value]="horarios[$index].horaApertura" [(ngModel)]="horarios[$index].horaApertura" required>
               </div>
                 
               <div class="timeContainer">
                 <label>Cierre</label>
-                <input  type="time" name="horaCierre-{{$index}}" [(ngModel)]="horarios[$index].horaCierre" required>
+                <input  type="time" name="horaCierre-{{$index}}" [value]="horarios[$index].horaCierre" [(ngModel)]="horarios[$index].horaCierre" required>
               </div>
                 
              
@@ -90,7 +90,7 @@
             <div>
               <mat-form-field>
                 <mat-label>Telefono {{$index + 1}}</mat-label>
-                <input matInput type="text" name="phone-{{$index}}" [(ngModel)]="telefonos[$index]" required>
+                <input matInput type="text" name="phone-{{$index}}" [value]="item" [(ngModel)]="telefonos[$index]" required>
               </mat-form-field>
             </div>
             
@@ -100,7 +100,7 @@
       </div>
 
       <div class="buttonContainer">
-        <button mat-raised-button color="primary" (click)="crearNegocio()" [disabled]="f.invalid ">Actualizar</button>
+        <button mat-raised-button color="primary" (click)="actualizaNegocio()" [disabled]="f.invalid ">Actualizar</button>
         <a routerLink="/my-business">
           <button mat-stroked-button color="accent">Volver</button>
         </a>
