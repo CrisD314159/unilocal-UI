@@ -31,7 +31,7 @@
       <a href="/denounce-business/{{codigoNegocio}}">Denunciar publicación</a>
     </div>
     <p>Publicado por: {{userName}}</p>
-    <p>Calificación: {{negocio?.calificacionPromedio}}</p>
+    <p>Calificación: {{rating}} estrellas</p>
     <div class="locationContainer">
       <h3>Ubicación</h3>
       <div id="mapa"></div>
@@ -63,6 +63,47 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="commentsContainer">
+    <h2>Comentarios</h2>
+    <div class="commentContainer">
+      <div class="commentList">
+        @for (item of comments; track $index) {
+          <div class="commentItem">
+            <h3>{{item.titulo}}</h3>
+            <p> Autor: {{item.nombreUsuario}}</p>
+            <p>{{item.contenido}}</p>
+            <p>Calificación: {{item.calificacion}} estrellas</p>
+          </div>
+
+        }
+      </div>
+    </div>
+    <div class="commentForm">
+      <form action="" (submit)="agregarComentario($event)" >
+        <mat-form-field class="formItem">
+          <mat-label>Título</mat-label>
+          <input matInput name="titulo" (change)="handleTitle($event)" required/>
+        </mat-form-field>
+        <mat-form-field class="formItem">
+          <mat-label>Comentario</mat-label>
+          <input matInput name="comentario" (change)="handleChange($event)" required/>
+        </mat-form-field>
+        <mat-form-field class="formItem">
+          <mat-select name="calificacion" required placeholder="Selecciona una calificación para el negocio" (selectionChange)="handleRate($event)" required>
+            <mat-option value="1">1 estrella</mat-option>
+            <mat-option value="2">2 estrellas</mat-option>
+            <mat-option value="3">3 estrellas</mat-option>
+            <mat-option value="4">4 estrellas</mat-option>
+            <mat-option value="5">5 estrellas</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-fab color="primary" class="formButton"><mat-icon>send</mat-icon></button>
+
+      </form>
+      
+    </div>
   </div>
 </main>
 <app-footer/>

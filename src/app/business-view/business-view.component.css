@@ -91,3 +91,79 @@ h3{
 .item-container > p{
    margin: 0;
 }
+
+
+
+
+
+/* Parte comentarios */
+.commentsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    margin-top: 20px;
+
+
+
+}
+
+.commentsContainer > h2{
+    margin: 20px 0;
+    font-size: 1.5rem;
+    font-weight: 200;
+}
+
+.commentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    margin-top: 20px;
+    padding:20px;
+    background-color: #f1f1f1;
+    border-radius: 50px;
+}
+
+.commentList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    margin-top: 20px;
+
+}
+
+.commentItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 20px;
+    background-color: #ecebeb;
+    border-radius: 10px;
+}
+
+.commentItem > h3{
+   font-size: 1.1rem;
+   font-weight: 500;
+}
+
+.commentForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    margin-top: 20px;
+    background-color: #f1f1f1;
+    border-radius: 50px;
+    padding: 10px;
+    
+}
+
+.formItem{
+    margin: 0 10px;
+}
