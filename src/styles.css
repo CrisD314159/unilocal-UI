@@ -48,3 +48,37 @@ main{
   background-color: #e6e6e6;
 	min-height: 100vh;
 }
+
+.mapbox-directions-route-summary {
+	width: 70%;
+  background-color: #3f51b5;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.mapbox-directions-route-summary h2,
+.mapbox-directions-route-summary h3 {
+  color: white;
+}
+
+.mapbox-directions-inputs {
+	display: none;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.mapbox-directions-instructions ol {
+  padding-left: 20px;
+}
+
+.mapbox-directions-instructions li {
+  margin-bottom: 10px;
+}
+.mapbox-directions-instructions-wrapper{
+	background-color: #f9f9f9;
+	padding: 10px;
+	border-radius: 4px;
+	width: 70%;
+}

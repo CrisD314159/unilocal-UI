@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Ubicacion } from '../dto/ubicacion';
 import { Observable } from 'rxjs';
 import { ItemNegocioDTO } from '../dto/item-negocio-dto';
+import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 
 
 
@@ -37,6 +38,7 @@ export class MapaService {
       trackUserLocation: true
   })
   );
+  
 }
 
 
@@ -80,36 +82,27 @@ public establecerRuta(origen: Ubicacion, destino: Ubicacion) {
   //  this.mapa.addControl(
   //    new mapboxgl.Directions()
   // );
-
+ 
   
  
 
   navigator.geolocation.getCurrentPosition((position) => {
      const userCoordinates = [position.coords.longitude, position.coords.latitude];
      const pointB = [destino.longitud, destino.latitud];
-     this.mapa.addLayer({
-      id: 'ruta',
-      type: 'line',
-      source: {
-          type: 'geojson',
-          data: {
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                  type: 'LineString',
-                  coordinates: [userCoordinates, pointB]
-              }
-          }
-      },
-      layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-      },
-      paint: {
-          'line-color': '#888',
-          'line-width': 8
-      }
+     this.directions = new MapboxDirections({
+      accessToken: mapboxgl.accessToken,
+      unit: 'metric',
+      profile: 'mapbox/driving',
+      controls: { inputs: true, instructions: true, profileSwitcher: true },
+      style: 'mapbox://styles/mapbox/streets-v11',
+      geometries: 'polyline',
+
+      
     });
+    this.directions.setOrigin(userCoordinates);
+    this.directions.setDestination(pointB);
+    this.mapa.addControl(this.directions, 'top-left');
+
 
     // Centra el mapa en la ubicación del usuario
     this.mapa.setCenter(userCoordinates);
