@@ -4,11 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from '../footer/footer.component';
 import { TokenService } from '../../services/token.service';
 import { flush } from '@angular/core/testing';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-guest-header',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, MatButtonModule, FooterComponent],
+  imports: [RouterOutlet, RouterLink, MatButtonModule, FooterComponent, MatIcon],
   templateUrl: './guest-header.component.html',
   styleUrl: './guest-header.component.css'
 })

@@ -20,7 +20,7 @@ export class ModeradorService {
     return this.http.get<MensajeDTO>(`${this.negociosPrivateURL}/search/estado/ESPERA`);
   }
   public obtenerRechazados(): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.negociosPrivateURL}/search/estado/INACTIVO`);
+    return this.http.get<MensajeDTO>(`${this.negociosPrivateURL}/search/estado/RECHAZADO`);
   }
   public aprobarNegocio(id:string): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.moderadorURl}/aprobar-lugar/${id}`, null);

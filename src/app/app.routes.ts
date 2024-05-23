@@ -21,6 +21,7 @@ import { BusinessViewAdminComponent } from './business-view-admin/business-view-
 import { DenounceViewComponent } from './denounce-view/denounce-view.component';
 import { DenounceAdminComponent } from './denounce-admin/denounce-admin.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { FavoritesViewComponent } from './favorites-view/favorites-view.component';
 
 export const routes: Routes = [
   {path:'', component:GuestHomeComponent},
@@ -40,6 +41,7 @@ export const routes: Routes = [
   {path:'denounce-view/:id', component:DenounceViewComponent, canActivate:[RolesGuard], data: {expectedRole: ['MODERADOR']}},
   {path:'my-profile', component:MyProfileComponent, canActivate:[RolesGuard], data: {expectedRole: ['CLIENTE']}},
   {path:'denounce-business/:id', component:DenounceComponent, canActivate:[RolesGuard], data: {expectedRole: ['CLIENTE']}},
+  {path:'favorites', component:FavoritesViewComponent, canActivate:[RolesGuard], data: {expectedRole: ['CLIENTE']}},
   {path:'recuperar-contrasenia/:id', component:ChangePasswordComponent},
   {path:'reset-password', component:ResetPasswordComponent},
   

@@ -65,8 +65,7 @@ export class EditBusinessComponent {
     this.fotos = [];
   }
   public actualizaNegocio() {
-    if(this.actualizarNegocioDTO.imagenes.length > 0){
-
+    
     this.actualizarNegocioDTO.id = this.codigoNegocio;
     this.actualizarNegocioDTO.descripcion = this.negocio.descripcion;
     this.actualizarNegocioDTO.nombre = this.negocio.nombre;
@@ -84,9 +83,7 @@ export class EditBusinessComponent {
     
     });
 
-    }else{
-      this.alerta = new Alerta("Debe subir y guardar al menos una imagen", "danger");
-    }
+    
 
     
   }

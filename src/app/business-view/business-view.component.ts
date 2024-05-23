@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TokenService } from '../../services/token.service';
 import { ComentarioService } from '../../services/comentario.service';
 import { MatIcon } from '@angular/material/icon';
+import { ClienteService } from '../../services/cliente.service';
 @Component({
   selector: 'app-business-view',
   standalone: true,
@@ -32,13 +33,14 @@ export class BusinessViewComponent {
 
   codigoNegocio: string = '';
   negocio: ItemNegocioDTO | undefined;
-  favorito:FavoritoDTO = new FavoritoDTO();
+  favoritoDTO:FavoritoDTO = new FavoritoDTO();
+  favorito: boolean = false;
   userName: string = '';
   commentDTO: ComentarioDTO = new ComentarioDTO();
   comments: ComentarioItem[] = [];
   rating:string = '';
 
-  constructor(private negocioService: BusinessService, private route: ActivatedRoute, private mapaService: MapaService, private tokenService: TokenService, private commentService: ComentarioService) {
+  constructor(private negocioService: BusinessService, private route: ActivatedRoute, private mapaService: MapaService, private tokenService: TokenService, private commentService: ComentarioService, private clienteService: ClienteService ) {
     this.route.params.subscribe(params => {
       this.codigoNegocio = params['id'];
       this.negocioService.obtener(this.codigoNegocio).subscribe({
@@ -48,6 +50,7 @@ export class BusinessViewComponent {
           this.getRating();
           this.getUsername();
           this.obtenerComentarios();
+          this.verificarFavorito();
         },
         error: error => {
           console.log(error);
@@ -87,11 +90,35 @@ export class BusinessViewComponent {
 
   public agregarFavoritos(){
     if(this.negocio){
-      this.favorito.idNegocio = this.negocio.codigoNegocio;
+      this.favoritoDTO.idNegocio = this.codigoNegocio;
+      this.favoritoDTO.idUsuario = this.tokenService.getCodigo();
+      console.log(this.favoritoDTO);
+      this.clienteService.agregarFavoritos(this.favoritoDTO).subscribe({
+        next: data => {
+          console.log(data);
+          this.favorito = true;
+        },
+        error: error => {
+          console.log(error.error);
+        }
+      });
     }
-    
-    this
   }
+  public quitarFavoritos(){
+    if(this.negocio){
+      this.clienteService.quitarFavorito(this.tokenService.getCodigo(), this.codigoNegocio).subscribe({
+        next: data => {
+          console.log(data);
+          this.favorito = false;
+        },
+        error: error => {
+          console.log(error);
+        }
+      });
+    }
+  }
+
+  
 
   ngOnInit(): void {
     this.mapaService.crearMapa();
@@ -122,6 +149,19 @@ export class BusinessViewComponent {
 
     }
 
+  }
+  public verificarFavorito(){
+    if(this.negocio){
+      this.clienteService.buscarFavorito(this.tokenService.getCodigo(), this.codigoNegocio).subscribe({
+        next: data => {
+          console.log(data);
+          this.favorito = data.respuesta;
+        },
+        error: error => {
+          console.log(error);
+        }
+      });
+    }
   }
 
   public obtenerComentarios(){

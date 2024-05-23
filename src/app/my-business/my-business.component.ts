@@ -41,8 +41,16 @@ export class MyBusinessComponent {
   }
 
   public deleteBusiness(id: string){
-    this.negocioService.eliminar(id);
-    this.listarNegocios()
+    this.negocioService.eliminar(id).subscribe({
+      next: (data) => {
+        console.log(data.respuesta);
+        window.location.reload();
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+    
   }
 
   public mostrarActivos(){
