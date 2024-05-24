@@ -10,16 +10,16 @@ import { LoginDTO } from '../dto/login-dto';
 })
 export class AuthService {
 
-  private authURL = "http://localhost:8080/api/auth";
+  private authURL = "https://unilocal-backend.onrender.com/api/auth";
 
   constructor(private http: HttpClient) { }
 
   public registrarCliente(cliente: RegistroClienteDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`http://localhost:8080/api/sign-up/registrar-cliente`, cliente);
+    return this.http.post<MensajeDTO>(`https://unilocal-backend.onrender.com/api/sign-up/registrar-cliente`, cliente);
     }
 
     public loginCliente(loginDTO: LoginDTO): Observable<MensajeDTO> {
-      return this.http.post<MensajeDTO>(`http://localhost:8080/api/auth/login-cliente`, loginDTO);
+      return this.http.post<MensajeDTO>(`https://unilocal-backend.onrender.com/api/auth/login-cliente`, loginDTO);
     }
 
     public loginAdmin(loginDTO: LoginDTO): Observable<MensajeDTO> {

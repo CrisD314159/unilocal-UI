@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class ModeradorService {
 
-  private moderadorURl = "http://localhost:8080/api/moderadores";
-  private negociosPrivateURL = "http://localhost:8080/api/lugares";
-  private negociosPublicURL = "http://localhost:8080/api/public/lugares";
-  private denunciaURL = "http://localhost:8080/api/denuncias";
+  private moderadorURl = "https://unilocal-backend.onrender.com/api/moderadores";
+  private negociosPrivateURL = "https://unilocal-backend.onrender.com/api/lugares";
+  private negociosPublicURL = "https://unilocal-backend.onrender.com/api/public/lugares";
+  private denunciaURL = "https://unilocal-backend.onrender.com/api/denuncias";
 
 
   constructor(private http: HttpClient) {}

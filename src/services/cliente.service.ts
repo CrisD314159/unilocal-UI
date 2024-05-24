@@ -10,8 +10,8 @@ import { FavoritoDTO } from '../dto/favorito-dto';
   providedIn: 'root'
 })
 export class ClienteService {
-  private clienteURL = "http://localhost:8080/api/clientes";
-  private utilsURL = "http://localhost:8080/api/utils/recuperar";
+  private clienteURL = "https://unilocal-backend.onrender.com/api/clientes";
+  private utilsURL = "https://unilocal-backend.onrender.com/api/utils/recuperar";
 
   constructor(private http: HttpClient) { }
 

@@ -13,10 +13,10 @@ import { DenounceDTO } from '../dto/denounce-dto';
 })
 export class BusinessService {
 
-  private negociosPrivateURL = "http://localhost:8080/api/lugares";
-  private negociosPublicURL = "http://localhost:8080/api/public/lugares";
-  private clienteURL = "http://localhost:8080/api/clientes";
-  private denunciaURL = "http://localhost:8080/api/denuncias";
+  private negociosPrivateURL = "https://unilocal-backend.onrender.com/api/lugares";
+  private negociosPublicURL = "https://unilocal-backend.onrender.com/api/public/lugares";
+  private clienteURL = "https://unilocal-backend.onrender.com/api/clientes";
+  private denunciaURL = "https://unilocal-backend.onrender.com/api/denuncias";
 
 
   constructor(private http: HttpClient) {

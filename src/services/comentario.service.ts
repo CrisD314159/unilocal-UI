@@ -9,7 +9,7 @@ import { ComentarioDTO } from '../dto/comentario-dto';
 })
 export class ComentarioService {
 
-  private url = 'http://localhost:8080/api/comentarios';
+  private url = 'https://unilocal-backend.onrender.com/api/comentarios';
   constructor(
     private http: HttpClient
   ) { }
