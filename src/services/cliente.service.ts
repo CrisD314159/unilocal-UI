@@ -44,5 +44,9 @@ export class ClienteService {
     return this.http.post<MensajeDTO>(`${this.clienteURL}/buscar-favorito/${idUsuario}`, idNegocio);
   }
 
+  public eliminarCuenta(idUsuario:string): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`${this.clienteURL}/eliminar-usuario/${idUsuario}`);
+  }
+
 
 }

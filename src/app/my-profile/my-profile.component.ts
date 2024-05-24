@@ -9,6 +9,7 @@ import { ImagenService } from '../../services/imagen.service';
 import { Router } from '@angular/router';
 import { DetalleusuarioDTO } from '../../dto/detalleusuario-dto';
 import { RouterLink } from '@angular/router';
+import { ClienteService } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -20,7 +21,7 @@ import { RouterLink } from '@angular/router';
 export class MyProfileComponent {
   usuario: DetalleusuarioDTO;
 
-  constructor(private negociosService: BusinessService, private mapaService: MapaService, private tokenService: TokenService, private imagenService: ImagenService, private router: Router) {
+  constructor(private negociosService: BusinessService, private mapaService: MapaService, private tokenService: TokenService, private imagenService: ImagenService, private router: Router, private clienteService: ClienteService) {
     this.usuario = new DetalleusuarioDTO();
     this.negociosService.obtenerUsuario(this.tokenService.getCodigo()).subscribe({
       next: data => {
@@ -35,7 +36,14 @@ export class MyProfileComponent {
   }
 
   public deleteProfile(id:string){
-    //this.negociosService.eliminarUsuario(id);
+    this.clienteService.eliminarCuenta(id).subscribe({
+      next: data => {
+        console.log(data);
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
     this.router.navigate(['/']);
   }
 

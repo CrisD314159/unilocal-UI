@@ -32,7 +32,7 @@ import { ClienteService } from '../../services/cliente.service';
 export class BusinessViewComponent {
 
   codigoNegocio: string = '';
-  negocio: ItemNegocioDTO | undefined;
+  negocio: ItemNegocioDTO = new ItemNegocioDTO();
   favoritoDTO:FavoritoDTO = new FavoritoDTO();
   favorito: boolean = false;
   userName: string = '';

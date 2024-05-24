@@ -43,6 +43,7 @@ export class EditBusinessComponent {
           this.negocio = data.respuesta;
           this.telefonos = this.negocio.telefonos;
           this.horarios = this.negocio.horarios;
+          this.mapaService.pintarMarcador(this.negocio);
           console.log(this.negocio);
 
         },
@@ -132,7 +133,7 @@ export class EditBusinessComponent {
 
   ngOnInit(): void {
     this.mapaService.crearMapa();
-    this.mapaService.pintarMarcador(this.negocio);
+    
     this.mapaService.agregarMarcador().subscribe((marcador) => {
       this.actualizarNegocioDTO.ubicacion.latitud = marcador.lat;
       this.actualizarNegocioDTO.ubicacion.longitud = marcador.lng;
